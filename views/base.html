@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{doc.locale}}">
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    {% if podspec.meta.google_site_verification %}
+    <meta name="google-site-verification" content="{{podspec.meta.google_site_verification}}">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height">
+    <title>{% if doc.title %}{{doc.title}} – {% endif %}{{podspec.title}}</title>
+    {% if podspec.meta.image %}
+      <meta property="og:image" content="{{g.static(podspec.meta.image).url}}">
+    {% endif %}
+    <meta property="og:title" content="{% if doc.title %}{{doc.title}} – {% endif %}{{podspec.title}}">
+    <meta property="og:site_name" content="{{podspec.title}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{doc.url}}">
+    {% if doc.description %}
+    <meta name="description" content="{{doc.description}}">
+    <meta property="og:description" content="{{doc.description}}">
+    {% endif %}
+    {% if podspec.meta.favicon_path %}
+    <link rel="shortcut icon" href="{{g.static(podspec.meta.favicon_path).url.path}}">
+    {% endif %}
+    <link rel="stylesheet" href="{{g.static('/dist/css/main.min.css').url.path}}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto:300,400" rel="stylesheet">
+    {% if podspec.meta.google_analytics_id %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{podspec.meta.google_analytics_id}}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
+  </head>
+  <body>
+    <header>
+
+    </header>
+    <main>
+      <section class="introduction">
+        <h2>An Introduction</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam faucibus mauris id pharetra interdum. Sed eget posuere erat. Integer in interdum magna. Fusce faucibus varius nisi, quis hendrerit arcu mollis eget. Praesent eros lacus, varius in rhoncus et, porta a felis. Maecenas consectetur, ligula vitae vulputate pretium, ex ipsum posuere nulla, sed mollis tortor enim at purus. In arcu massa, cursus in tristique ornare, consectetur ac sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras sit amet velit at mauris rhoncus gravida. Duis dignissim ante at lorem iaculis consequat.</p>
+        <p>Morbi libero ex, tempus et ultrices non, eleifend eget eros. Nunc convallis quam at diam commodo, nec egestas sem congue. Nulla pellentesque justo mauris, eget semper mauris consectetur a. Vivamus ac risus accumsan, cursus dui at, laoreet ante. In scelerisque tortor justo, pulvinar pellentesque ex molestie at. Suspendisse vel lacus massa. Duis ac sodales ante.</p>
+        <p>Vivamus convallis laoreet est nec aliquet. Curabitur et commodo leo, eget semper dolor. Aliquam sodales risus ut leo semper tempor. Suspendisse at nisl metus. Phasellus quis pellentesque sapien. Vivamus orci odio, fringilla sed lacus at, eleifend congue sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris est sem, venenatis non laoreet at, volutpat sit amet ex. Nullam lobortis consequat purus. Nullam urna ex, vestibulum ut pretium luctus, vestibulum ac arcu. Pellentesque ac bibendum augue. Proin tristique diam vel est porta, sed bibendum nulla vestibulum. Sed nec consectetur risus. Quisque posuere hendrerit consequat. Cras est nisl, placerat a arcu quis, euismod posuere orci. Vivamus non lacus lacinia, auctor sapien in, accumsan elit.</p>
+        <p>Aenean maximus pharetra tortor, sed mollis turpis bibendum at. Suspendisse potenti. Mauris justo urna, dictum ut dictum quis, ultrices sit amet sem. Nulla enim nulla, sagittis ultricies dignissim at, porta a nulla. Nulla at ornare neque. Proin nec mauris erat. Pellentesque molestie, odio eget tristique facilisis, elit turpis iaculis nulla, non accumsan sapien lectus ac nulla. Aenean sit amet urna aliquam, efficitur libero et, pretium felis. Fusce nec pellentesque risus. Integer ex diam, pulvinar pretium imperdiet a, fringilla sed ante. Nulla laoreet magna nunc, sit amet vestibulum metus venenatis sed. Suspendisse ultricies accumsan nulla, vitae lacinia odio euismod sit amet. Mauris in auctor ligula. Vivamus rhoncus consectetur mauris, sed ultrices nunc accumsan id. Morbi eu massa dolor. Aliquam suscipit orci a viverra dignissim.</p>
+      </section>
+      <section class="odometer">
+        <h3>Odometer feature</h3>
+        <div class="data-row">
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">8</span>
+              </div>
+              <cite>Source: Source A, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">10</span>
+              </div>
+              <cite>Source: Source B, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">5</span>
+              </div>
+              <cite>Source: Source C, 2017.</cite>
+            </div>
+        </div>
+        <div class="data-row">
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">14</span>
+              </div>
+              <cite>Source: Source D, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">4</span>
+              </div>
+              <cite>Source: Source E, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">8</span>
+              </div>
+              <cite>Source: Source F, 2017.</cite>
+            </div>
+        </div>
+      </section>
+      <div class="parallax-img">
+        <img src="/assets/static/images/emigrant-peak-bluebird.jpg" />
+      </div>
+      <section class="parallax">
+        <h3>Parallax feature</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam faucibus mauris id pharetra interdum. Sed eget posuere erat. Integer in interdum magna. Fusce faucibus varius nisi, quis hendrerit arcu mollis eget. Praesent eros lacus, varius in rhoncus et, porta a felis. Maecenas consectetur, ligula vitae vulputate pretium, ex ipsum posuere nulla, sed mollis tortor enim at purus. In arcu massa, cursus in tristique ornare, consectetur ac sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras sit amet velit at mauris rhoncus gravida. Duis dignissim ante at lorem iaculis consequat.</p>
+      </section>
+      <section class="svg-data">
+        <h3>SVG Animation feature</h3>
+        <div class="data-row">
+            <div class="data-col">
+              <div class="data-num">
+                <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
+                  <circle class="svg-core" cx="91" cy="91" r="88"></circle>
+                  <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="191.8"></circle>
+                  <div class="svg-data-item">
+                    <span>65</span>
+                  </div>
+                </svg>
+              </div>
+              <cite>Source: Source A, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
+                <circle class="svg-core" cx="91" cy="91" r="88"></circle>
+                <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="301.4"></circle>
+                <div class="svg-data-item">
+                  <span>45</span>
+                </div>
+              </svg>
+              <cite>Source: Source B, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
+                  <circle class="svg-core" cx="91" cy="91" r="88"></circle>
+                  <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="71.24"></circle>
+                  <div class="svg-data-item">
+                    <span>87</span>
+                  </div>
+                </svg>
+              </div>
+              <cite>Source: Source C, 2017.</cite>
+            </div>
+        </div>
+      </section>
+      <section class="data-menu">
+        <h3>Data Menu feature</h3>
+        <div class="data-row">
+          <div class="data-col">
+            <div class="data-num">
+              <span class="txt">Button Dropdown</span>
+              <!-- Needs to be a menu -->
+            </div>
+          </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">8</span>
+              </div>
+              <cite>Source: Source A, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">10</span>
+              </div>
+              <cite>Source: Source B, 2017.</cite>
+            </div>
+            <div class="data-col">
+              <div class="data-num">
+                <span class="num">5</span>
+              </div>
+              <cite>Source: Source C, 2017.</cite>
+            </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+    </footer>
+    <script src="/assets/static/js/main.js"></script>
+  </body>
+</html>

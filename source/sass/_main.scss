@@ -1,0 +1,103 @@
+main {
+  border-top: 3px solid #000;
+  margin: 0 auto;
+  max-width: $site-max-width;
+  padding: 0;
+}
+
+section {
+  border-top: 1px solid #ccc;
+  margin-top: 50px;
+  padding-top: 20px;
+
+  &.introduction {
+    border: 0;
+    margin: 0;
+  }
+
+  &.parallax {
+    border: 0;
+    margin-top: 20px;
+    padding: 0;
+  }
+}
+
+.parallax-img {
+  width: $site-max-width;
+
+  img {
+    width: $site-max-width;
+  }
+}
+
+.odometer {
+  margin-bottom: 50px;
+  min-height: 400px;
+}
+
+.data-row {
+  display: table;
+}
+
+.data-col {
+  display: table-cell;
+  padding: 2em;
+  text-align: center;
+  width: 33%;
+
+  .num {
+    @include font-family('Roboto');
+    font-size: 5.5em;
+    font-weight: 100;
+  }
+
+  .txt {
+    @include font-family('Roboto');
+    font-size: 2em;
+    text-align: right;
+  }
+}
+
+.svg-circle {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  height: 12.5rem;
+  margin: 2em auto 0;
+  width: 12.5rem;
+}
+
+.svg-core {
+  fill: none;
+  stroke: rgba(0,0,0,.22);
+  stroke-width: 3;
+}
+
+.svg-stroke {
+  -webkit-transition: stroke-dashoffset 1s;
+  transition: stroke-dashoffset 1s;
+  fill: none;
+  opacity: 1;
+  stroke-dasharray: 548;
+  stroke-linecap: round;
+  stroke-width: 7;
+  stroke: $red;
+}
+
+.svg-data-item {
+  position: relative;
+  top: -149px;
+
+  span {
+    display: block;
+    @include font-family('Roboto');
+    font-size: 5em;
+  }
+}
+
+.data-menu {
+
+  .data-num {
+  }
+}
