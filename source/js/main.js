@@ -7,20 +7,18 @@ app.Main = function() {
   this.init_();
 };
 
-var app = app.Main;
-
 //All functions/methods go in this function
-app.prototype.init_ = function() {
+app.Main.prototype.init_ = function() {
   console.log('Arrived');
 
-  var newHeader = goog.dom.createDom('h1', {'style': 'background-color:#000;color:#fff;'},
+  var newHeader = goog.dom.createDom('h2', {'style': 'background-color:#000'},
     'Hello world!');
   goog.dom.appendChild(document.body, newHeader);
 };
 
-app.CssClasses = {
-  FOO: 'bar'
-}
+// app.Main.Main.CssClasses = {
+//   FOO: 'bar'
+// }
 
 //app.CssClasses.FOO
 
