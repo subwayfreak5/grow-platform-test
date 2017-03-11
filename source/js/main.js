@@ -11,7 +11,7 @@ app.Main = function() {
 app.Main.prototype.init_ = function() {
   console.log('Arrived');
 
-  var newHeader = goog.dom.createDom('h2', {'style': 'background-color:#000'},
+  var newHeader = goog.dom.createDom('h3', {'style': 'background-color:#000'},
     'Hello world!');
   goog.dom.appendChild(document.body, newHeader);
 };
