@@ -4,7 +4,6 @@ gulp.task('js-compile', function () {
   return gulp.src(
     ['./source/js/main.js']
   )
-
     .pipe(gulp.dest('./source/js'));
 });
 
