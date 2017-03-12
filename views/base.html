@@ -99,9 +99,11 @@
       </section>
       <section class="svg-data">
         <h3>SVG Animation feature</h3>
+        <!--TODO: Have these SVGs animate upon the svg being visible/entering in
+        viewport on scroll.  -->
         <div class="data-row">
             <div class="data-col">
-              <div class="data-num">
+              <div class="data-num-svg">
                 <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
                   <circle class="svg-core" cx="91" cy="91" r="88"></circle>
                   <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="191.8"></circle>
@@ -113,17 +115,19 @@
               <cite>Source: Source A, 2017.</cite>
             </div>
             <div class="data-col">
-              <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
-                <circle class="svg-core" cx="91" cy="91" r="88"></circle>
-                <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="301.4"></circle>
-                <div class="svg-data-item">
-                  <span>45</span>
-                </div>
-              </svg>
+              <div class="data-num-svg">
+                <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
+                  <circle class="svg-core" cx="91" cy="91" r="88"></circle>
+                  <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="301.4"></circle>
+                  <div class="svg-data-item">
+                    <span>45</span>
+                  </div>
+                </svg>
+              </div>
               <cite>Source: Source B, 2017.</cite>
             </div>
             <div class="data-col">
-              <div class="data-num">
+              <div class="data-num-svg">
                 <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
                   <circle class="svg-core" cx="91" cy="91" r="88"></circle>
                   <circle class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="71.24"></circle>
@@ -138,37 +142,64 @@
       </section>
       <section class="data-menu">
         <h3>Data Menu feature</h3>
-        <div class="data-row">
-          <div class="data-col">
-            <div class="data-num">
-              <span class="txt">Button Dropdown</span>
-              <!-- Needs to be a menu -->
-            </div>
+        <!--TODO: Make .data-cta a drop down menu which allows you to select
+        Data Set 2. Upon Selection of Data Set 2, hide Data Set 1 information and
+        show Data Set 2 info, preferably with an animation. -->
+        <div class="data-cta">
+          <div class="data-cta-content">
+            <span class="txt">Data Set 1</span>
           </div>
-            <div class="data-col">
-              <div class="data-num">
-                <span class="num">8</span>
+          <div class="data-cta-content hidden">
+            <span class="txt">Data Set 2</span>
+          </div>
+        </div>
+        <div class="data-row-container">
+          <div class="data-row data-set-1">
+              <div class="data-col">
+                <div class="data-num">
+                  <span class="num">8</span>
+                </div>
+                <cite>Source: Source A, 2017.</cite>
               </div>
-              <cite>Source: Source A, 2017.</cite>
-            </div>
-            <div class="data-col">
-              <div class="data-num">
-                <span class="num">10</span>
+              <div class="data-col">
+                <div class="data-num">
+                  <span class="num">10</span>
+                </div>
+                <cite>Source: Source B, 2017.</cite>
               </div>
-              <cite>Source: Source B, 2017.</cite>
-            </div>
-            <div class="data-col">
-              <div class="data-num">
-                <span class="num">5</span>
+              <div class="data-col">
+                <div class="data-num">
+                  <span class="num">5</span>
+                </div>
+                <cite>Source: Source C, 2017.</cite>
               </div>
-              <cite>Source: Source C, 2017.</cite>
-            </div>
+          </div>
+          <div class="data-row data-set-2 hidden">
+              <div class="data-col">
+                <div class="data-num">
+                  <span class="num">10</span>
+                </div>
+                <cite>Source: Source A, 2017.</cite>
+              </div>
+              <div class="data-col">
+                <div class="data-num">
+                  <span class="num">12</span>
+                </div>
+                <cite>Source: Source B, 2017.</cite>
+              </div>
+              <div class="data-col">
+                <div class="data-num">
+                  <span class="num">7</span>
+                </div>
+                <cite>Source: Source C, 2017.</cite>
+              </div>
+          </div>
         </div>
       </section>
     </main>
     <footer>
     </footer>
-    <script src="/assets/static/js/demo.js"></script>
-    <script src="/assets/static/js/main.min.js"></script>
+    <!--TODO: Why doesn't my minified file work here? Do I need to list "externs"? -->
+    <script src="/assets/static/js/main.js"></script>
   </body>
 </html>

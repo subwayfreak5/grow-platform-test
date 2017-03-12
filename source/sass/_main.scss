@@ -1,3 +1,46 @@
+/* Config */
+$red: #ff5252;
+$site-max-width: 800px;
+
+/* Mixins */
+@mixin font-family ($font) {
+  font-family: $font, Arial, sans-serif;
+}
+
+@mixin headline-styles($font-size, $font-weight) {
+  color: $red;
+  @include font-family('Roboto');
+  font-size: $font-size;
+  font-weight: $font-weight;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles */
+body {
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: $site-max-width;
+}
+
+h2 {
+  @include headline-styles(2em, 400);
+}
+
+h3 {
+  @include headline-styles(1.5em, 300);
+}
+
+cite,
+p {
+  @include font-family('Raleway');
+}
+
+header {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
 main {
   border-top: 3px solid #000;
   margin: 0 auto;
@@ -35,6 +78,23 @@ section {
   min-height: 400px;
 }
 
+.data-menu {
+
+  .data-col {
+    padding: 0.5em;
+  }
+}
+
+.data-cta,
+.data-row-container {
+  display: inline-block;
+}
+
+.data-cta {
+  padding-top: 1.5em;
+  vertical-align: top;
+}
+
 .data-row {
   display: table;
 }
@@ -50,12 +110,12 @@ section {
     font-size: 5.5em;
     font-weight: 100;
   }
+}
 
-  .txt {
-    @include font-family('Roboto');
-    font-size: 2em;
-    text-align: right;
-  }
+.txt {
+  @include font-family('Roboto');
+  font-size: 2em;
+  text-align: right;
 }
 
 .svg-circle {
@@ -96,8 +156,10 @@ section {
   }
 }
 
-.data-menu {
+.hidden {
+  display: none;
+}
 
-  .data-num {
-  }
+.visible {
+  display: block;
 }

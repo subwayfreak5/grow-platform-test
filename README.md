@@ -8,6 +8,7 @@ At a minimum, you will need the following tools installed:
 
 1. [Git](http://git-scm.com/)
 2. [Grow](https://grow.io)
+3. [Gulp](http://gulpjs.com/)
 
 If you do not have Grow, you can install it using:
 
