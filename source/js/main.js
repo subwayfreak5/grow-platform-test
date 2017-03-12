@@ -2,6 +2,8 @@ console.log('Demo JS confirmed!');
 
 startPercentageAnimations(); //call this function when section appears in window
 
+
+/// Below are the functions for the SVG animations, do not update unless needed.
 function startPercentageAnimations(){
     var animationDuration = 1000, //one second
         increments = animationDuration * 60/1000, //assume 60 frames per second
