@@ -194,37 +194,65 @@ Utils.prototype = {
 	});
     },
 
+    /**
+     * Registers a selection div to be used for showing / hiding hidden data.
+     * @param {String} selectDiv_id the id of the div to register
+     */
     registerSelect: function(selectDiv_id){
 	
 	var select = document.getElementById(selectDiv_id);
+	// Create a closure;
 	var f = function(select) {
+
 	    var selected = select.value;
 	    select.onchange = function (e) {
 
+		// Hide the old item
 		var elem = document.getElementById(selected);
 		Utils.addClass(elem, "data-item-hidden");
 
 		selected = select.value;		
 		elem = document.getElementById(selected);
+
+		// Clear the contents of the new item to be shown
 		var temp = elem.innerHTML;
 		elem.innerHTML = '';
+		// Set it to be visible and redraw its contents
 		Utils.removeClass(elem, "data-item-hidden");
 		elem.innerHTML = temp;
 		
 	    }
 	};
+	// Call the closure
 	f(select);
 	
     },
 
+    /**
+     * Given an element and a class name, checks to see if the element contains the class name
+     * @param {HTMLElement} The element to check
+     * @param {String} The class name to look up
+     * @return true if the element contains the class and false otherwise
+     */
     hasClass: function (ele,cls) {
 	return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
     },
 
+    /**
+     * Given an alement and a class name, add the class to the element if it does not already
+     * have the specified class.
+     * @param {HTMLElement} The element to modify
+     * @param {String} The class name to add
+     */
     addClass: function (ele,cls) {
 	if (!Utils.hasClass(ele,cls)) ele.className += " "+cls;
     },
 
+    /**
+     * Given an element and a class name, remove the class from the element if it contains it
+     * @param {HTMLElement} ele The element to modify
+     * @param {String} cls The class name to remove
+     */
     removeClass: function (ele,cls) {
 	if (Utils.hasClass(ele,cls)) {
             var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
