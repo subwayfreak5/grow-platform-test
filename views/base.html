@@ -265,6 +265,40 @@
         </div>
       </section>
 
+      <section>
+        <h3>Data Menu Feature</h3>
+
+	<!-- The option values should match the id tags of the divs to display -->
+	<select id="data-selector">
+	  <option value="item1">Data 1</option>
+	  <option value="item2">Data 2</option>
+	  <option value="item3">Data 3</option>
+	</select>
+
+	<div id="item1" class="data-item">
+	  <!-- The code works such that everything inside the parent div is redrawn upon selection
+	       this means any CSS animations associated with it will run again and isn't limited 
+	       to circles. You could put *ANY* animation here. This allows us to
+	       avoid unnecessary Javascript and use CSS animations which are superior 
+	       as the browser can take advantage of a graphics card if it is present. -->
+	  <div class="circle1"> </div>
+	</div>
+
+	<!-- The hidden divs you want to hide initially should have the data-item-hidden class -->
+	<div id="item2" class="data-item-hidden">
+	  <div class="circle2"> </div>
+	</div>
+	
+	<!-- The hidden divs you want to hide initially should have the data-item-hidden class -->
+	<div id="item3" class="data-item-hidden">
+	  <div class="circle3"> </div>
+	</div>
+	  
+
+      </section>
+
+      
+
       
       
     </main>

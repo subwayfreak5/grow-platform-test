@@ -194,6 +194,45 @@ Utils.prototype = {
 	});
     },
 
+    registerSelect: function(selectDiv_id){
+	
+	var select = document.getElementById(selectDiv_id);
+	var f = function(select) {
+	    var selected = select.value;
+	    select.onchange = function (e) {
+
+		var elem = document.getElementById(selected);
+		Utils.addClass(elem, "data-item-hidden");
+
+		selected = select.value;		
+		elem = document.getElementById(selected);
+		var temp = elem.innerHTML;
+		elem.innerHTML = '';
+		Utils.removeClass(elem, "data-item-hidden");
+		elem.innerHTML = temp;
+		
+	    }
+	};
+	f(select);
+	
+    },
+
+    hasClass: function (ele,cls) {
+	return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+    },
+
+    addClass: function (ele,cls) {
+	if (!Utils.hasClass(ele,cls)) ele.className += " "+cls;
+    },
+
+    removeClass: function (ele,cls) {
+	if (Utils.hasClass(ele,cls)) {
+            var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+            ele.className=ele.className.replace(reg,' ');
+	}
+    },
+    
+
 };
 
 
@@ -225,6 +264,9 @@ function init() {
     // Register Parallax Divs
     Utils.registerParallax("emigrant-peak", 300);
     Utils.registerParallax("blue-background", 600);
+
+    // Register your Data Divs
+    Utils.registerSelect('data-selector');
     
     // Ensures that events that are visible on page load run.
     Utils.runScrollEvents(null);
