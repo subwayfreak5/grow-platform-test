@@ -244,6 +244,16 @@ section {
     @include circle(blue, 100px);
 }
 
+.data-text {
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    color:white;
+    font-size:2em;
+    font-weight:bold;
+    z-index:1;
+}
+
 .circle2 {
     @include circle(red, 200px);
 }
