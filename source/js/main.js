@@ -186,7 +186,8 @@ function init() {
 
     // Initialize all of the digits on the page
     Utils.initDigits();
-	
+    // Ensures that events that are visible on page load run.
+    Utils.runScrollEvents(null);
     console.log("Loaded!");
     
 }
