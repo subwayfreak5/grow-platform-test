@@ -10,6 +10,7 @@ function Utils() {
 Utils.prototype = {
     constructor: Utils,
     scroll_events: [],
+    parallax_elements: [],
     /**
      * Checks to see if the specified dom element is in the view
      * @param {object} el The element to be checked
@@ -159,6 +160,40 @@ Utils.prototype = {
 	}
     },
 
+    /**
+     * Given an DOM element id and the number of pixels to scrool
+     * registers the element to have parallax scrolling.
+     * @param {string} elem_id The id of the element to use parallax scrolling on
+     * @param {number} The total number of pixels to scroll
+     */
+    registerParallax: function (elem_id, amount) {
+	Utils.parallax_elements.push( { elem_id: elem_id, amount: amount } )
+    },
+
+    /**
+     * Runs the parallax event for each element registerred using registerParallax
+     */
+    runParallaxEvents: function (e) {
+	var window_bounds = Utils.getWindowBounds();
+	var window_height = window_bounds.bottom - window_bounds.top;
+
+	// For each registered element
+	Utils.parallax_elements.forEach(function (par) {
+	    // Find the element on the dom
+	    var elem = document.getElementById(par.elem_id);
+	    var bounds = Utils.getBounds(elem);
+	    var height = bounds.bottom - bounds.top;
+	    // Calculate how far it is currently scrolled on the screen
+	    var ratio = (window_bounds.bottom + height - bounds.bottom)/(window_height + height);
+	    // Keep the ratio in bounds
+	    ratio = Math.max(0, Math.min(1, ratio));
+	    // Calculate how much to move the image based on the ratio
+	    var position = -(par.amount)*ratio;
+	    // Apply the movement
+	    elem.style.backgroundPositionY = '' + position + 'px';
+	});
+    },
+
 };
 
 
@@ -186,8 +221,14 @@ function init() {
 
     // Initialize all of the digits on the page
     Utils.initDigits();
+
+    // Register Parallax Divs
+    Utils.registerParallax("emigrant-peak", 300);
+    Utils.registerParallax("blue-background", 600);
+    
     // Ensures that events that are visible on page load run.
     Utils.runScrollEvents(null);
+    Utils.runParallaxEvents(null);
     console.log("Loaded!");
     
 }
@@ -202,5 +243,5 @@ var Utils = new Utils();
 window.onload = function () { init() }
 
 // When the page is scrolled, run all registered scroll events
-window.onscroll = function (e) { Utils.runScrollEvents(e) }
+window.onscroll = function (e) { Utils.runScrollEvents(e); Utils.runParallaxEvents(e) }
 
