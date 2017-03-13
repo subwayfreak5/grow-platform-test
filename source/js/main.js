@@ -18,7 +18,7 @@ Utils.prototype = {
      */      
     isElementInView: function (el) {
 	if(!Utils.isDOMElement(el)) throw "Invalid Argument. Expected instanceof DomElement but received: " + el;
-	return Utils.intersectsAll(Utils.getWindowBounds(), Utils.getBounds(el));
+	return Utils.intersectsAll(Utils.getWindowBounds(), Utils.getBounds(el), 25);
     },
 
     /**
@@ -75,12 +75,14 @@ Utils.prototype = {
      * Checks to see if a parent bounds contains the child bounds
      * @param {bounds} parent the parent bounds
      * @param {bounds} child the child bounds
+     * @param {number} Optional offset value to use on the bottom edge of the parent
      * @return true if the parent completely contains the child and false otherwise.
      */
-    intersectsAll: function(parent, child){
+    intersectsAll: function(parent, child, offset){
+	if(typeof offset === 'undefined') offset = 0;
 	return parent.left <= child.left
 	    && parent.top <= child.top
-	    && parent.bottom >= child.bottom
+	    && parent.bottom + offset >= child.bottom
 	    && parent.right >= child.right;
 	
 	    
@@ -125,6 +127,9 @@ function init() {
     circles.push({ parent_id: "svg_element1", circle_id: "circle1", percent: 0.65 });
     circles.push({ parent_id: "svg_element2", circle_id: "circle2", percent: 0.45 });
     circles.push({ parent_id: "svg_element3", circle_id: "circle3", percent: 0.87 });
+    circles.push({ parent_id: "svg_element4", circle_id: "circle4", percent: 0.65 });
+    circles.push({ parent_id: "svg_element5", circle_id: "circle5", percent: 0.45 });
+    circles.push({ parent_id: "svg_element6", circle_id: "circle6", percent: 0.87 });
 
     // for each circle, register an event that it should animate when it comes on the screen
     circles.forEach(function (circle) {
