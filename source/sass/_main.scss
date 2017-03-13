@@ -58,12 +58,35 @@ section {
     margin: 0;
   }
 
-  &.parallax {
+}
+
+.emigrant-peak {
+    background-image: url("/assets/static/images/emigrant-peak-bluebird.jpg");
+}
+
+.emigrant-peak p {
+    color: white;
+    padding: 5px;
+}
+
+.blue-background {
+    background-image: url("/assets/static/images/blue-background.jpg");
+}
+
+.blue-background p {
+    padding: 5px;
+}
+
+
+.parallax {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
     border: 0;
     margin-top: 20px;
     padding: 0;
-  }
 }
+
 
 .parallax-img {
   width: $site-max-width;
