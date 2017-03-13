@@ -162,3 +162,39 @@ section {
 .visible {
   display: block;
 }
+
+// Start Odometer Styling
+
+@mixin animation($single-animation) {
+  -webkit-animation: $single-animation;
+  animation: $single-animation;
+}
+
+@mixin animation-duration($duration) {
+  -webkit-animation-duration: $duration;
+  animation-duration: $duration;
+}
+
+/* Modify the stylings of the digit here */
+.digit {    
+    @include font-family('Roboto');
+    /* Change these lines to adjust the stylings */
+    width: 0.6em;
+    font-size: 5.5em;
+    font-weight: 100;
+    /* Change this line to change how fast the scrolling happens */
+    transition: transform 1s;
+    /* Do not change */
+    display: inline-block;
+}
+
+/* Modify the size of the digit container here */
+.digit-container {
+    /* This should match the font-size unless you want to show partials of each element above / below */
+    line-height: 5.5em;
+    height: 5.5em;
+    /* Do not change these */
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+}

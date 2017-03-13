@@ -116,6 +116,49 @@ Utils.prototype = {
 	});
     },
 
+    /**
+     * Initializes all Digits on the page.
+     * The following example creates an odometer on a static page
+     * which will scroll to the number 17. 
+     * <div class="digit-container">
+     *  <div class="digit" value="1"></div>
+     *  <div class="digit" value="7"></div>
+     * </div>
+     */
+    initDigits: function() {
+	// Finds each element with the class 'digit'
+	var digits = document.getElementsByClassName('digit');
+	
+	for(var i = 0; i < digits.length; i++){
+	    var digit = digits[i];
+	    var scroll = parseInt(digit.getAttribute('value'));
+	    digit.innerHTML = "0 1 2 3 4 5 6 7 8 9 0";
+
+	    // This function is necessary to curry the digit / scroll values
+	    // and pass them to the function when it is fired. The term for this
+	    // is a closuer (it is powerful and worth reading about also, it is
+	    // where the programming language gets its name).
+	    var f = function (digit, scroll) {
+		Utils.registerScrollEvent(function (e) {
+		    // Get the parent element and check if it is in view
+		    var parent = digit.parentElement;
+		    if(!Utils.isElementInView(parent)) return;
+
+		    // If it is, translate to the appropriate digit
+		    var value = 'translateY(-' + scroll + 'em)';
+
+		    // Necessary to have both for cross platform
+		    digit.style.transform = value;
+		    digit.style.webkitTransform = value;
+		    
+		});
+	    };
+
+	    // Finally, create the closure which registers the event.
+	    f(digit, scroll);
+	}
+    },
+
 };
 
 
@@ -140,7 +183,9 @@ function init() {
 	    Utils.animateCircle(svg, circle.percent);
 	});
     });
-			      
+
+    // Initialize all of the digits on the page
+    Utils.initDigits();
 	
     console.log("Loaded!");
     
