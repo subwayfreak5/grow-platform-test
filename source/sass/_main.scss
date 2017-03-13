@@ -198,11 +198,18 @@ section {
 }
 
 .data-item-container {
-    float: right;
     width: 400px;
     height: 400px;
     border: 1px solid black;
 }
+
+.data-item-container-2 {
+    width: 800px;
+    height: 400px;
+    border: 1px solid black;
+    display: block;
+}
+
 
 .data-item {
     width: 100%;

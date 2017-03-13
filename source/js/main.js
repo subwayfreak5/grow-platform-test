@@ -295,6 +295,7 @@ function init() {
 
     // Register your Data Divs
     Utils.registerSelect('data-selector');
+    Utils.registerSelect('data-selector-2');
     
     // Ensures that events that are visible on page load run.
     Utils.runScrollEvents(null);
