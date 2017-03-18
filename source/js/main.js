@@ -9,6 +9,31 @@ function Menu(target_id) {
     this.selected = false;
     this.open = false;
     this.lastAdd = false;
+
+    // This will only work in modern browsers.
+    var clearOnClick = function (menu) { 
+	document.addEventListener("click", function(e){
+
+	    var el = document.getElementById(menu.target_id);
+	    var bounds = Utils.getBounds(el);
+	    var x = e.pageX;
+	    var y = e.pageY;
+
+	    // Checks if the click was inside the element
+	    if(y > bounds.top &&
+	       y < bounds.bottom &&
+	       x > bounds.left &&
+	       x < bounds.right)
+		return;
+
+	    // If not, closes the menu;
+	    menu.open = false;
+	    menu.render();
+	});
+    };
+    
+    clearOnClick(this);
+
 }
 
 Menu.prototype = {
