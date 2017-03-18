@@ -1,6 +1,128 @@
 console.log('Demo JS confirmed!');
 
 /**
+ * Creates a Menu targetting a div with the given id
+ */
+function Menu(target_id) {
+    this.target_id = target_id;
+    this.labels = {}
+    this.selected = false;
+    this.open = false;
+    this.lastAdd = false;
+}
+
+Menu.prototype = {
+    constructor: Menu,
+
+    /**
+     * Adds a menu item to the menu with the specified label
+     * @param {string} the label to use for this menu item
+     * @return for convenience returns the menu itself.
+     */
+    addMenuItem: function (label) {
+	this.labels[label] = { label: label
+			       , elements: []
+			     };
+	if (!this.selected) this.selected = this.labels[label];
+	this.lastAdd = label
+	return this;
+    },
+
+    /**
+     * Registers an element to be associated with the specified label.
+     * @param {string} the id of the element to be redrawn when selected
+     * @param {string} optionally the label to associate with the div, 
+     *                 if no label is specified uses the most recently added menu item
+     * @return for convenience returns the menu itself.
+     */
+    registerElement: function ( element_id, label ){
+	if(typeof label === 'undefined') label = this.lastAdd;
+	this.labels[label].elements.push(element_id);
+	return this;
+    },
+
+    /**
+     * Renders the menu open.
+     */
+    renderOptions: function(target) {
+	// If it is already open, don't do anything
+	if(this.open) return;
+	// Create an unordered list
+	var ul = document.createElement("ul");
+
+	// For each label
+	for(var key in this.labels){
+	    var label = this.labels[key];
+
+	    // Create a list item
+	    var li = document.createElement("li");
+	    var a = document.createElement("a");
+	    a.innerHTML = label.label;
+	    a.setAttribute("href", "javascript:void(0)");
+
+	    // Add the click listener
+	    a.onclick = function (menu, label) {
+		return function(){
+
+		    // Hide all items that were registered with the previous item
+		    menu.selected.elements.forEach( function (e) {
+			var elem = document.getElementById(e);
+			Utils.addClass(elem, "data-item-hidden");
+		    });
+
+		    // Show all items that are registered with the current item
+		    label.elements.forEach( function (e) {
+			var elem = document.getElementById(e);
+			var temp = elem.innerHTML;
+			elem.innerHTML = '';
+			Utils.removeClass(elem, "data-item-hidden");
+			elem.innerHTML = temp;
+		    });
+
+		    // Close the menu, update selected, and redraw the menu
+		    menu.open = false;
+		    menu.selected = label;
+		    menu.render();
+
+		}
+	    }(this, label);
+
+	    // Finally, add the list item to the list
+	    li.appendChild(a);
+	    ul.appendChild(li);
+	}
+
+	// Add the list to the menu and mark the lsit open
+	target.appendChild(ul);
+	this.open = ul;
+    },
+    
+
+    /**
+     * Renders the menu closed with the currently selected item shown
+     */
+    render: function () {
+	var target = document.getElementById(this.target_id);
+	target.innerHTML = "";
+	var anchor = document.createElement("a");
+	anchor.innerHTML = this.selected.label;
+	anchor.setAttribute("href", "javascript:void(0)");
+	anchor.onclick = function (menu, target) {
+	    return function () {
+		if(menu.open) {
+		    target.removeChild(menu.open);
+		    menu.open = false;
+		} else {
+		    menu.renderOptions(target);
+		}
+	    }
+	}(this,target);
+	target.appendChild(anchor);
+    }
+    
+}
+
+/**
  * This is the Utils library I will build that you can drop into any page you'd like to use
  */
 function Utils() {
@@ -293,9 +415,19 @@ function init() {
     Utils.registerParallax("emigrant-peak", 300);
     Utils.registerParallax("blue-background", 600);
 
-    // Register your Data Divs
-    Utils.registerSelect('data-selector');
-    Utils.registerSelect('data-selector-2');
+    var menu = new Menu("data-menu");
+    menu.addMenuItem("Data 1").registerElement("item1")
+        .addMenuItem("Data 2").registerElement("item2")
+        .addMenuItem("Data 3").registerElement("item3")
+        .render();
+
+    var menu2 = new Menu("data-menu2");
+    // This shows how you can register multiple divs to redraw
+    menu2.addMenuItem("Data 4").registerElement("item4").registerElement("item1")
+         .addMenuItem("Data 5").registerElement("item5")
+         .addMenuItem("Data 6").registerElement("item6")
+         .render();
+    
     
     // Ensures that events that are visible on page load run.
     Utils.runScrollEvents(null);

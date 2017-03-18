@@ -297,3 +297,58 @@ select.soflow {
    width: 300px;
 }
 
+
+// This is required because of the absolute positioning. Without it, the menu
+// will appear on top of whatever come after it.
+.menu-wrapper {
+    height: 2.5em;
+}
+
+// The Absolute positioning is necessary to make it drop down over nearby elements
+.menu {
+    margin: 0px;
+    padding: 0;
+    border: 2px solid black;
+    width: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    min-height: 2em;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+}
+
+// Specifies how the overall menu colors
+.menu a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    padding: 0.5em;
+    font-weight: bold;
+    color: black;
+    background: #ececec;
+}
+
+.menu a:hover {
+    background: #cccccc;
+}
+
+// Removes list stylings and adds a line prior to the options
+.menu ul {
+    border-top:1px solid black;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+// Makes links take up the entire div
+.menu ul > li {
+    display: block;
+}
+
+// Change the style of inner elements here
+.menu ul > li > a {
+    background: #ffffff;
+    font-size: .75em;
+}
