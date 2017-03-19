@@ -75,7 +75,7 @@
             </div>
             <div class="data-col">
               <div class="data-num">
-		<div class="digit-container">		
+		<div class="digit-container">
                   <div class="digit" value="1"></div>
                   <div class="digit" value="0"></div>
 		</div>
@@ -84,7 +84,7 @@
             </div>
             <div class="data-col">
               <div class="data-num">
-		<div class="digit-container">		
+		<div class="digit-container">
                   <div class="digit" value="5"></div>
 		</div>
 	      </div>
@@ -163,7 +163,7 @@
           <div class="data-row data-set-1">
               <div class="data-col">
                 <div class="data-num">
-		  <div class="digit-container">		
+		  <div class="digit-container">
                     <div class="digit" value="8"></div>
 		  </div>
                 </div>
@@ -171,7 +171,7 @@
               </div>
               <div class="data-col">
                 <div class="data-num">
-                  <div class="digit-container">		
+                  <div class="digit-container">
                     <div class="digit" value="1"></div>
                     <div class="digit" value="0"></div>
 		  </div>
@@ -180,7 +180,7 @@
               </div>
               <div class="data-col">
                 <div class="data-num">
-		  <div class="digit-container">		
+		  <div class="digit-container">
                     <div class="digit" value="5"></div>
 		  </div>
                 </div>
@@ -212,15 +212,15 @@
 
       <section>
         <h3>Parallax feature</h3>
-	
+
 	<!-- The class should have a background image specified and the height of the box -->
 	<div id="blue-background" class="blue-background"></div>
 	<div>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a lorem eros. Phasellus maximus est nisi, in cursus eros scelerisque quis. Phasellus sagittis vulputate feugiat. Aliquam erat volutpat. Phasellus laoreet non orci facilisis ultricies. Suspendisse erat diam, tincidunt at facilisis nec, placerat vitae erat. Proin in vulputate mi. Ut tempus auctor commodo. Duis velit odio, vulputate at dui in, pretium congue risus.</p>
-	  
+
       </section>
-      
-      
+
+
       <section class="svg-data">
         <h3>SVG Animation feature</h3>
         <!--TODO: Have these SVGs animate upon the svg being visible/entering in
@@ -279,20 +279,37 @@
 
 	  <div id="item1" class="data-item">
 	    <!-- The code works such that everything inside the parent div is redrawn upon selection
-		 this means any CSS animations associated with it will run again and isn't limited 
+		 this means any CSS animations associated with it will run again and isn't limited
 		 to circles. You could put *ANY* animation here. This allows us to
-		 avoid unnecessary Javascript and use CSS animations which are superior 
+		 avoid unnecessary Javascript and use CSS animations which are superior
 		 as the browser can take advantage of a graphics card if it is present. -->
 	    <div class="data-text">2</div>
 	    <div class="circle1"> </div>
+      <div id="svg_element6" class="data-num-svg">
+        <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
+          <circle class="svg-core" cx="91" cy="91" r="88"></circle>
+          <circle id="circle6" class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="548"></circle>
+          <div class="svg-data-item">
+            <span>71</span>
+          </div>
+        </svg>
+      </div
 	  </div>
 
 	  <!-- The hidden divs you want to hide initially should have the data-item-hidden class -->
 	  <div id="item2" class="data-item data-item-hidden">
 	    <div class="data-text">4</div>
-	    <div class="circle2"> </div>
+      <div id="svg_element7" class="data-num-svg">
+        <svg class="svg-circle" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 192 192">
+          <circle class="svg-core" cx="91" cy="91" r="88"></circle>
+          <circle id="circle7" class="svg-stroke" cx="91" cy="91" r="88" stroke-dashoffset="548"></circle>
+          <div class="svg-data-item">
+            <span>48</span>
+          </div>
+        </svg>
+      </div
 	  </div>
-	  
+
 	  <!-- The hidden divs you want to hide initially should have the data-item-hidden class -->
 	  <div id="item3" class="data-item data-item-hidden">
 	    <div class="data-text">8</div>
@@ -305,7 +322,7 @@
 
       <section>
         <h3>Data Menu Feature</h3>
-	
+
 	<!-- The option values should match the id tags of the divs to display -->
 	<div class="menu-wrapper">
 	  <div id="data-menu2" class="menu"> </div>
@@ -315,9 +332,9 @@
 
 	  <div id="item4" class="data-item">
 	    <!-- The code works such that everything inside the parent div is redrawn upon selection
-		 this means any CSS animations associated with it will run again and isn't limited 
+		 this means any CSS animations associated with it will run again and isn't limited
 		 to circles. You could put *ANY* animation here. This allows us to
-		 avoid unnecessary Javascript and use CSS animations which are superior 
+		 avoid unnecessary Javascript and use CSS animations which are superior
 		 as the browser can take advantage of a graphics card if it is present. -->
 	    <div class="circle1"> </div>
 	    <div class="circle2"> </div>
@@ -328,12 +345,12 @@
 	  <div id="item5" class="data-item data-item-hidden">
 	    <div class="circle2"> </div>
 	    <div class="circle1"> </div>
-	    <div class="circle3"> </div>	    
+	    <div class="circle3"> </div>
 	  </div>
-	  
+
 	  <!-- The hidden divs you want to hide initially should have the data-item-hidden class -->
 	  <div id="item6" class="data-item data-item-hidden">
-	    <div class="circle3"> </div>	    
+	    <div class="circle3"> </div>
 	    <div class="circle2"> </div>
 	    <div class="circle1"> </div>
 
@@ -344,10 +361,10 @@
 
       </section>
 
-      
 
-      
-      
+
+
+
     </main>
     <footer>
     </footer>

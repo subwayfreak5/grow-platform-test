@@ -11,7 +11,7 @@ function Menu(target_id) {
     this.lastAdd = false;
 
     // This will only work in modern browsers.
-    var clearOnClick = function (menu) { 
+    var clearOnClick = function (menu) {
 	document.addEventListener("click", function(e){
 
 	    var el = document.getElementById(menu.target_id);
@@ -31,7 +31,7 @@ function Menu(target_id) {
 	    menu.render();
 	});
     };
-    
+
     clearOnClick(this);
 
 }
@@ -56,7 +56,7 @@ Menu.prototype = {
     /**
      * Registers an element to be associated with the specified label.
      * @param {string} the id of the element to be redrawn when selected
-     * @param {string} optionally the label to associate with the div, 
+     * @param {string} optionally the label to associate with the div,
      *                 if no label is specified uses the most recently added menu item
      * @return for convenience returns the menu itself.
      */
@@ -121,7 +121,7 @@ Menu.prototype = {
 	target.appendChild(ul);
 	this.open = ul;
     },
-    
+
 
     /**
      * Renders the menu closed with the currently selected item shown
@@ -144,7 +144,7 @@ Menu.prototype = {
 	}(this,target);
 	target.appendChild(anchor);
     }
-    
+
 }
 
 /**
@@ -163,7 +163,7 @@ Utils.prototype = {
      * @param {object} el The element to be checked
      * @return {boolean} true if the element is completely in the view and false otherwise
      * @throws "Invalid element:" if the object passed in is not a DOM object
-     */      
+     */
     isElementInView: function (el) {
 	if(!Utils.isDOMElement(el)) throw "Invalid Argument. Expected instanceof DomElement but received: " + el;
 	return Utils.intersectsAll(Utils.getWindowBounds(), Utils.getBounds(el), 25);
@@ -184,7 +184,7 @@ Utils.prototype = {
 
     /**
      * Returns the bounds of the specified DOM element
-     * @param {HTMLElement} 
+     * @param {HTMLElement}
      * @return the bounds of the specified DOM Element
      * @throws "Invalid Argument" if the specified element is not a DOM Element
      */
@@ -232,8 +232,8 @@ Utils.prototype = {
 	    && parent.top <= child.top
 	    && parent.bottom + offset >= child.bottom
 	    && parent.right >= child.right;
-	
-	    
+
+
     },
 
     /**
@@ -267,7 +267,7 @@ Utils.prototype = {
     /**
      * Initializes all Digits on the page.
      * The following example creates an odometer on a static page
-     * which will scroll to the number 17. 
+     * which will scroll to the number 17.
      * <div class="digit-container">
      *  <div class="digit" value="1"></div>
      *  <div class="digit" value="7"></div>
@@ -276,7 +276,7 @@ Utils.prototype = {
     initDigits: function() {
 	// Finds each element with the class 'digit'
 	var digits = document.getElementsByClassName('digit');
-	
+
 	for(var i = 0; i < digits.length; i++){
 	    var digit = digits[i];
 	    var scroll = parseInt(digit.getAttribute('value'));
@@ -298,7 +298,7 @@ Utils.prototype = {
 		    // Necessary to have both for cross platform
 		    digit.style.transform = value;
 		    digit.style.webkitTransform = value;
-		    
+
 		});
 	    };
 
@@ -346,7 +346,7 @@ Utils.prototype = {
      * @param {String} selectDiv_id the id of the div to register
      */
     registerSelect: function(selectDiv_id){
-	
+
 	var select = document.getElementById(selectDiv_id);
 	// Create a closure;
 	var f = function(select) {
@@ -358,7 +358,7 @@ Utils.prototype = {
 		var elem = document.getElementById(selected);
 		Utils.addClass(elem, "data-item-hidden");
 
-		selected = select.value;		
+		selected = select.value;
 		elem = document.getElementById(selected);
 
 		// Clear the contents of the new item to be shown
@@ -367,12 +367,12 @@ Utils.prototype = {
 		// Set it to be visible and redraw its contents
 		Utils.removeClass(elem, "data-item-hidden");
 		elem.innerHTML = temp;
-		
+
 	    }
 	};
 	// Call the closure
 	f(select);
-	
+
     },
 
     /**
@@ -406,7 +406,7 @@ Utils.prototype = {
             ele.className=ele.className.replace(reg,' ');
 	}
     },
-    
+
 
 };
 
@@ -422,6 +422,8 @@ function init() {
     circles.push({ parent_id: "svg_element4", circle_id: "circle4", percent: 0.65 });
     circles.push({ parent_id: "svg_element5", circle_id: "circle5", percent: 0.45 });
     circles.push({ parent_id: "svg_element6", circle_id: "circle6", percent: 0.87 });
+    circles.push({ parent_id: "svg_element7", circle_id: "circle7", percent: 0.71 });
+    circles.push({ parent_id: "svg_element8", circle_id: "circle8", percent: 0.48 });
 
     // for each circle, register an event that it should animate when it comes on the screen
     circles.forEach(function (circle) {
@@ -452,13 +454,13 @@ function init() {
          .addMenuItem("Data 5").registerElement("item5")
          .addMenuItem("Data 6").registerElement("item6")
          .render();
-    
-    
+
+
     // Ensures that events that are visible on page load run.
     Utils.runScrollEvents(null);
     Utils.runParallaxEvents(null);
     console.log("Loaded!");
-    
+
 }
 
 
@@ -472,4 +474,3 @@ window.onload = function () { init() }
 
 // When the page is scrolled, run all registered scroll events
 window.onscroll = function (e) { Utils.runScrollEvents(e); Utils.runParallaxEvents(e) }
-
