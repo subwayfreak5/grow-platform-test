@@ -47,6 +47,8 @@ Menu.prototype = {
     addMenuItem: function (label) {
 	this.labels[label] = { label: label
 			       , elements: []
+			       , onShow: []
+			       , onHide: []
 			     };
 	if (!this.selected) this.selected = this.labels[label];
 	this.lastAdd = label
@@ -65,6 +67,32 @@ Menu.prototype = {
 	this.labels[label].elements.push(element_id);
 	return this;
     },
+
+    /**
+     * Registers a function to be run when a specified label is selected.
+     * @param {function} The function to be run
+     * @param {string} optionally the label to be selected
+     *                 if no label is specified uses the most recently added menu item
+     * @return for convenience returns the menu itself.
+     */    
+    registerShowFunction: function ( f, label ){
+	if(typeof label === 'undefined') label = this.lastAdd;
+	this.labels[label].onShow.push(f);
+	return this;
+    },
+
+    /**
+     * Registers a function to be run when a specified label is unselected.
+     * @param {function} The function to be run
+     * @param {string} optionally the label to be unselected
+     *                 if no label is specified uses the most recently added menu item
+     * @return for convenience returns the menu itself.
+     */        registerHideFunction: function ( f, label ){
+	if(typeof label === 'undefined') label = this.lastAdd;
+	this.labels[label].onHide.push(f);
+	return this;
+    },
+
 
     /**
      * Renders the menu open.
@@ -95,6 +123,11 @@ Menu.prototype = {
 			Utils.addClass(elem, "data-item-hidden");
 		    });
 
+		    // Runs all funtions that should be run when the item is hidden
+		    menu.selected.onHide.forEach( function (f) {
+			f();
+		    });
+
 		    // Show all items that are registered with the current item
 		    label.elements.forEach( function (e) {
 			var elem = document.getElementById(e);
@@ -104,10 +137,18 @@ Menu.prototype = {
 			elem.innerHTML = temp;
 		    });
 
+		    
 		    // Close the menu, update selected, and redraw the menu
 		    menu.open = false;
 		    menu.selected = label;
 		    menu.render();
+
+		    // Runs all of the functions that need to show after rendering is completed
+		    label.onShow.forEach( function (f) {
+			f();
+		    });
+
+		    
 
 		}
 	    }(this, label);
@@ -407,6 +448,13 @@ Utils.prototype = {
 	}
     },
 
+    circleAnimation: function(circle_id, percent){
+	return function (){
+	    var svg = document.getElementById(circle_id);
+	    Utils.animateCircle(svg, percent);
+	};
+    }
+
 
 };
 
@@ -443,14 +491,23 @@ function init() {
     Utils.registerParallax("blue-background", 600);
 
     var menu = new Menu("data-menu");
-    menu.addMenuItem("Data 1").registerElement("item1")
-        .addMenuItem("Data 2").registerElement("item2")
+    menu.addMenuItem("Data 1")
+
+	.registerElement("item1")
+	.registerShowFunction(Utils.circleAnimation('circle7', 0.71))
+	.registerHideFunction(Utils.circleAnimation('circle7', 0.0))
+
+	.addMenuItem("Data 2").registerElement("item2")
+	.registerShowFunction(Utils.circleAnimation('circle8', 0.48))
+	.registerHideFunction(Utils.circleAnimation('circle8', 0.0))
+    
+    
         .addMenuItem("Data 3").registerElement("item3")
         .render();
 
     var menu2 = new Menu("data-menu2");
     // This shows how you can register multiple divs to redraw
-    menu2.addMenuItem("Data 4").registerElement("item4").registerElement("item1")
+    menu2.addMenuItem("Data 4").registerElement("item4")
          .addMenuItem("Data 5").registerElement("item5")
          .addMenuItem("Data 6").registerElement("item6")
          .render();
