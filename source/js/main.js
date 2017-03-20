@@ -448,12 +448,35 @@ Utils.prototype = {
 	}
     },
 
+    /**
+     * Returns a function which animates the specified circle
+     * to the specified percentage.
+     * @param {string} The circles id
+     * @param {number} the percentage to animate to
+     * @return Returns a 0 argument function with the specified animation
+     */
     circleAnimation: function(circle_id, percent){
 	return function (){
 	    var svg = document.getElementById(circle_id);
 	    Utils.animateCircle(svg, percent);
 	};
-    }
+    },
+
+
+    /**
+     * Creates a function which updates the specified targets inner
+     * value.
+     * @param {string} the id of the container to update
+     * @param {string} the value to update the target with
+     * @return Returns a 0 argument function which updates the
+     *         body of the specified target.
+     */
+    createTargetUpdate: function(target_id, value){
+	return function(){
+	    var target = document.getElementById(target_id);
+	    target.innerHTML = value;
+	};
+    },
 
 
 };
@@ -502,7 +525,11 @@ function init() {
 	.registerHideFunction(Utils.circleAnimation('circle8', 0.0))
     
     
-        .addMenuItem("Data 3").registerElement("item3")
+        .addMenuItem("Data 3")
+	.registerElement("item3")
+    // Selecting Data 3 will now update the item with id 'data-menu-title'
+    // to have the contents 'You Selected Data 3!'
+	.registerShowFunction(Utils.createTargetUpdate('data-menu-title', "You selected Data 3!"))
         .render();
 
     var menu2 = new Menu("data-menu2");
