@@ -106,6 +106,7 @@ Menu.prototype = {
 	// For each label
 	for(var key in this.labels){
 	    var label = this.labels[key];
+            if(label === this.selected) continue;
 
 	    // Create a list item
 	    var li = document.createElement("li");
