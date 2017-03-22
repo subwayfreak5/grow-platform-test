@@ -2,8 +2,11 @@ console.log('Demo JS confirmed!');
 
 /**
  * Creates a Menu targetting a div with the given id
+ * @param {string} target_id The id of the element thata will become a menu
+ * @param {string} title The title of this menu that will appear the first time it is rendered
  */
-function Menu(target_id) {
+function Menu(target_id, title) {
+    this.title = title;
     this.target_id = target_id;
     this.labels = {}
     this.selected = false;
@@ -50,7 +53,6 @@ Menu.prototype = {
 			       , onShow: []
 			       , onHide: []
 			     };
-	if (!this.selected) this.selected = this.labels[label];
 	this.lastAdd = label
 	return this;
     },
@@ -118,16 +120,19 @@ Menu.prototype = {
 	    a.onclick = function (menu, label) {
 		return function(){
 
-		    // Hide all items that were registered with the previous item
-		    menu.selected.elements.forEach( function (e) {
-			var elem = document.getElementById(e);
-			Utils.addClass(elem, "data-item-hidden");
-		    });
+                    if(menu.selected){
+                    
+		        // Hide all items that were registered with the previous item
+		        menu.selected.elements.forEach( function (e) {
+			    var elem = document.getElementById(e);
+			    Utils.addClass(elem, "data-item-hidden");
+		        });
 
-		    // Runs all funtions that should be run when the item is hidden
-		    menu.selected.onHide.forEach( function (f) {
-			f();
-		    });
+		        // Runs all funtions that should be run when the item is hidden
+		        menu.selected.onHide.forEach( function (f) {
+			    f();
+		        });
+                    }
 
 		    // Show all items that are registered with the current item
 		    label.elements.forEach( function (e) {
@@ -172,7 +177,7 @@ Menu.prototype = {
 	var target = document.getElementById(this.target_id);
 	target.innerHTML = "";
 	var anchor = document.createElement("a");
-	anchor.innerHTML = this.selected.label;
+	anchor.innerHTML = this.selected ? this.selected.label : this.title;
 	anchor.setAttribute("href", "javascript:void(0)");
 	anchor.onclick = function (menu, target) {
 	    return function () {
@@ -514,7 +519,7 @@ function init() {
     Utils.registerParallax("emigrant-peak", 300);
     Utils.registerParallax("blue-background", 600);
 
-    var menu = new Menu("data-menu");
+    var menu = new Menu("data-menu", "Menu Title");
     menu.addMenuItem("Data 1")
 
 	.registerElement("item1")
@@ -533,7 +538,7 @@ function init() {
 	.registerShowFunction(Utils.createTargetUpdate('data-menu-title', "You selected Data 3!"))
         .render();
 
-    var menu2 = new Menu("data-menu2");
+    var menu2 = new Menu("data-menu2", "Menu Title 2");
     // This shows how you can register multiple divs to redraw
     menu2.addMenuItem("Data 4").registerElement("item4")
          .addMenuItem("Data 5").registerElement("item5")
