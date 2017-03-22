@@ -4,10 +4,13 @@ console.log('Demo JS confirmed!');
  * Creates a Menu targetting a div with the given id
  * @param {string} target_id The id of the element thata will become a menu
  * @param {string} title The title of this menu that will appear the first time it is rendered
+ * @param {string} default_id optional argument specifying a default element to hide after 
+ *                            the first item is selected
  */
-function Menu(target_id, title) {
+function Menu(target_id, title, default_id) {
     this.title = title;
     this.target_id = target_id;
+    this.default_id = typeof default_id === 'undefined' ? false : default_id;
     this.labels = {}
     this.selected = false;
     this.open = false;
@@ -120,6 +123,15 @@ Menu.prototype = {
 	    a.onclick = function (menu, label) {
 		return function(){
 
+                    // If the default_id is currently visible, hide it.
+                    if(menu.default_id){
+                        console.log("Here!");
+                        var elem = document.getElementById(menu.default_id);
+                        Utils.addClass(elem, "data-item-hidden");
+                        menu.default_id = false;
+                    }
+
+                    // If a menu item is selected, we need to run all associated functions
                     if(menu.selected){
                     
 		        // Hide all items that were registered with the previous item
@@ -519,7 +531,7 @@ function init() {
     Utils.registerParallax("emigrant-peak", 300);
     Utils.registerParallax("blue-background", 600);
 
-    var menu = new Menu("data-menu", "Menu Title");
+    var menu = new Menu("data-menu", "Menu Title", "default-item");
     menu.addMenuItem("Data 1")
 
 	.registerElement("item1")
